@@ -12,6 +12,10 @@ export default ({app, store}) => {
 		consult: async (collection) => {
 			let snapshotResponse = await firebasedb.database().ref(collection).once('value');
 
+			firebasedb.database().ref(collection).child('-L5tg6hbJN5Ln_uUrjjQ').on('value', snapshot => {
+				console.log('USER', snapshot.val());
+			});
+
 			return snapshotResponse.val();
 		}
 	}

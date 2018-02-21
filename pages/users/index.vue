@@ -17,8 +17,8 @@
 export default {
   asyncData({ app, req, params }) {
   	return app.db.consult('personas/')
-  		.then(reponse => {
-  			return { users: reponse }
+  		.then(response => {
+  			return { users: response }
   		});
   },
   head: {
