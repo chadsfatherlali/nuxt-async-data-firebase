@@ -1,0 +1,18 @@
+{
+  "name": "nuxt-async-data",
+  "dependencies": {
+    "axios": "latest",
+    "child_process": "^1.0.2",
+    "firebase": "^4.10.0",
+    "firebase-admin": "latest",
+    "fs": "0.0.1-security",
+    "net": "^1.0.2",
+    "nuxt": "latest",
+    "tls": "0.0.1"
+  },
+  "scripts": {
+    "dev": "nuxt",
+    "build": "nuxt build",
+    "start": "nuxt start"
+  }
+}
