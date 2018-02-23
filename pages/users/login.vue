@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <h1>Login</h1>
-    <pre v-if="$store.state.authUser">--> Login <--</pre>
+    <pre v-if="$store.state.authUser">--> Estas logado <--</pre>
 
     <form @submit.prevent="login">
       <input type="text" name="email" placeholder="email@example" v-model="formEmail" />
@@ -15,6 +15,8 @@
 </template>
 
 <script>
+import { login, currentUser } from '../../custom_modules/firebase-instance.js';
+
 export default {
   data () {
     return {
@@ -23,11 +25,10 @@ export default {
     }
   },
   methods: {
-    async login ({ app }) {
-      await app.db.auth().signInWithEmailAndPassword(this.formEmail, this.formPassword).catch(err => {
-        this.$store.dispatch('login', {
-          error: err
-        })
+    async login () {
+      await login(this.formEmail, this.formPassword);
+      await this.$store.dispatch('login', {
+        user: currentUser()
       });
     } 
   },

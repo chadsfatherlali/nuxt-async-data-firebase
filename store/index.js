@@ -1,4 +1,6 @@
-/*export const state = () => ({
+import { currentUser } from '../custom_modules/firebase-instance.js'
+
+export const state = () => ({
 	authUser: null
 });
 
@@ -9,12 +11,10 @@ export const mutations = {
 }
 
 export const actions = {
-	nuxtServerInit({ app, commit }) {
-		let user = app.db.auth().currentUser;
-
-		if (!user) commit('SET_USER', user);
+	nuxtServerInit({ commit }, { req }) {
+		commit('SET_USER', currentUser());
 	},
-	async login ({ app, commit }, { error }) {
-		if (!error) commit('SET_USER', app.db.auth().currentUser);
+	async login ({ app, commit }, { user }) {
+		commit('SET_USER', user);
 	}
-}*/
+}
