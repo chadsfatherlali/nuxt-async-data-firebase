@@ -20,7 +20,8 @@ export default {
     return {
       title: this.post.title
     }
-  }
+  },
+  middleware: 'isUserLoggedIn'
 }
 </script>
 

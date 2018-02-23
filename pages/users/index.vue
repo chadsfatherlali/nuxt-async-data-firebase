@@ -5,7 +5,7 @@
     <ul>
       <li v-for="(user, index) in users" :key="index">
         <pre>
-        	{{ user.nombre }} {{ index }}
+        	{{ user.nombre }} <strong>{{ index }}</strong>
         </pre>
       </li>
     </ul>
@@ -14,12 +14,15 @@
 </template>
 
 <script>
+import { consult } from '../../custom_modules/firebase-instance.js';
+
 export default {
   asyncData({ app, req, params }) {
-  	return app.db.consult('personas/')
-  		.then(response => {
-  			return { users: response }
-  		});
+  	return consult('personas/').then(resposne => {
+  		return {
+  			users: resposne
+  		}
+  	})
   },
   head: {
     title: 'List of posts'

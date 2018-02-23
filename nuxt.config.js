@@ -14,8 +14,5 @@ module.exports = {
     routes: [
       '/posts/1'
     ]
-  },
-  plugins: [
-    '~/plugins/firebase.js'
-  ]
+  }
 }
