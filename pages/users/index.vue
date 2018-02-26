@@ -14,7 +14,7 @@
 </template>
 
 <script>
-import { consult } from '../../custom_modules/firebase-instance.js';
+import { consult } from '../../custom_modules/firebase-instance.js'
 
 export default {
   asyncData({ app, req, params }) {

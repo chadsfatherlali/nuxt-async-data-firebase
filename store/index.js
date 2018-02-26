@@ -1,4 +1,5 @@
 import { currentUser } from '../custom_modules/firebase-instance.js'
+import axios from 'axios'
 
 export const state = () => ({
 	authUser: null
@@ -12,9 +13,15 @@ export const mutations = {
 
 export const actions = {
 	nuxtServerInit({ commit }, { req }) {
-		commit('SET_USER', currentUser());
+		if (req.session && req.session.authUser) {
+			commit('SET_USER', req.session.authUser);			
+		}
 	},
 	async login ({ app, commit }, { user }) {
+		const { savedSession } = await axios.post('/api/setSession', { user })
 		commit('SET_USER', user);
+	},
+	async logout ({ commit }) {
+		const { destroyedSession } = await axios.post('/api/destroyedSession')
 	}
 }

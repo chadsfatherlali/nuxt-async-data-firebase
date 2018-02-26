@@ -1,6 +1,9 @@
+const bodyParser = require('body-parser');
+const session = require('express-session');
+
 module.exports = {
   build: {
-    vendor: ['axios'] // Add axios in the vendor.bundle.js
+    vendor: ['axios']
   },
   loading: {
     color: '#4FC08D',
@@ -14,5 +17,15 @@ module.exports = {
     routes: [
       '/posts/1'
     ]
-  }
+  },
+  serverMiddleware: [
+    bodyParser.json(),
+    session({
+      secret: 'super-secret-key',
+      resave: false,
+      saveUninitialized: false,
+      cookie: { maxAge: 60000 }
+    }),
+    '~/api'
+  ]
 }

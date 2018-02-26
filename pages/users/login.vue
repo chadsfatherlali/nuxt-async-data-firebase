@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <h1>Login</h1>
-    <pre v-if="$store.state.authUser">--> Estas logado <--</pre>
+    <pre v-if="$store.state.authUser">{{ $store.state.authUser.email }}</pre>
 
     <form @submit.prevent="login">
       <input type="text" name="email" placeholder="email@example" v-model="formEmail" />
@@ -9,6 +9,8 @@
 
       <button type="submit">Login</button>
     </form>
+
+    <button @click="logout">Logout</button>
 
     <p><nuxt-link to="/">Back to home page</nuxt-link></p>
   </div>
@@ -30,7 +32,10 @@ export default {
       await this.$store.dispatch('login', {
         user: currentUser()
       });
-    } 
+    },
+    async logout () {
+      await this.$store.dispatch('logout')
+    }
   },
   head: {
     title: 'Login users'

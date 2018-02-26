@@ -1,6 +1,9 @@
 {
   "name": "nuxt-async-data",
   "dependencies": {
+    "body-parser": "latest",
+    "express": "latest",
+    "express-session": "latest",
     "axios": "latest",
     "child_process": "^1.0.2",
     "firebase": "^4.10.0",
