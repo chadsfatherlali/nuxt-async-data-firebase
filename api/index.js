@@ -1,3 +1,4 @@
+const firebase = require('./../plugins/firebase/firebase-server');
 const express = require('express')
 const router = express.Router()
 const app = express()
@@ -10,6 +11,12 @@ router.use((req, res, next) => {
   next()
 })
 
+router.get('/firebase/:collection', (req, res) => {
+  firebase.consult(req.params.collection).then(response => {
+    res.json(response)
+  })
+  //firebasedb.database().ref(collection).once('value')
+});
 
 router.post('/setSession', (req, res) => {
   req.session.authUser = req.body  
@@ -18,8 +25,8 @@ router.post('/setSession', (req, res) => {
   //res.status(401).json({ message: 'Bad credentials' })
 })
 
-router.post('/destroyedSession', (req, res) => {
-  delete res.session.authUser
+router.post('/destroySession', (req, res) => {
+  delete req.session.authUser
 
   res.json({ ok: true })
 })

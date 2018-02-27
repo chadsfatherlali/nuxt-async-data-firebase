@@ -1,23 +1,27 @@
 <template>
   <div class="container">
     <h1>Login</h1>
-    <pre v-if="$store.state.authUser">{{ $store.state.authUser.email }}</pre>
 
-    <form @submit.prevent="login">
+    <form v-if="!$store.state.authUser" @submit.prevent="login">
       <input type="text" name="email" placeholder="email@example" v-model="formEmail" />
       <input type="password" name="password" placeholder="contraseña" v-model="formPassword" />
 
       <button type="submit">Login</button>
     </form>
 
-    <button @click="logout">Logout</button>
+    <div v-else>
+      <pre>{{ $store.state.authUser.email }}</pre>
+      <div><nuxt-link to="/users">Now you can see our clients</nuxt-link></div>
+      <br />
+      <button @click="logout">Logout</button>
+    </div>
 
     <p><nuxt-link to="/">Back to home page</nuxt-link></p>
   </div>
 </template>
 
 <script>
-import { login, currentUser } from '../../custom_modules/firebase-instance.js';
+import { login, currentUser } from '../../plugins/firebase/firebase-client.js';
 
 export default {
   data () {
@@ -28,13 +32,25 @@ export default {
   },
   methods: {
     async login () {
-      await login(this.formEmail, this.formPassword);
-      await this.$store.dispatch('login', {
-        user: currentUser()
-      });
+      try {
+        await login(this.formEmail, this.formPassword);
+        await this.$store.dispatch('login', {
+          user: currentUser()
+        });
+      }
+
+      catch (e) {
+        console.log(e)
+      }
     },
     async logout () {
-      await this.$store.dispatch('logout')
+      try {
+        await this.$store.dispatch('logout')
+      }
+
+      catch (e) {
+        console.log(e)
+      }
     }
   },
   head: {

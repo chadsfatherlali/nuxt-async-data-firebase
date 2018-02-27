@@ -14,19 +14,27 @@
 </template>
 
 <script>
-import { consult } from '../../custom_modules/firebase-instance.js'
+import axios from 'axios'
 
 export default {
   asyncData({ app, req, params }) {
-  	return consult('personas/').then(resposne => {
-  		return {
-  			users: resposne
-  		}
-  	})
+  	return axios.get('/api/firebase/personas').then(response => {
+      return {
+        users: response.data
+      }
+    })
+
+    /*return {
+      users: [
+        { nombre: 'Santiago' },
+        { nombre: 'Diego' }
+      ]
+    }*/
   },
   head: {
     title: 'List of posts'
-  }
+  },
+  middleware: 'auth'
 }
 </script>
 
