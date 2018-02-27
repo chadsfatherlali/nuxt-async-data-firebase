@@ -17,19 +17,16 @@
 import axios from 'axios'
 
 export default {
-  asyncData({ app, req, params }) {
-  	return axios.get('/api/firebase/personas').then(response => {
-      return {
-        users: response.data
-      }
-    })
-
-    /*return {
-      users: [
-        { nombre: 'Santiago' },
-        { nombre: 'Diego' }
-      ]
-    }*/
+  asyncData({ req, params }) {
+  	return axios.get('/api/firebase/personas')
+      .then(response => {
+        return {
+          users: response.data
+        }
+      })
+      .catch(err => {
+        console.log(err)
+      })
   },
   head: {
     title: 'List of posts'

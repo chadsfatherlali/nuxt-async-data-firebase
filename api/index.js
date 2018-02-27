@@ -12,9 +12,14 @@ router.use((req, res, next) => {
 })
 
 router.get('/firebase/:collection', (req, res) => {
-  firebase.consult(req.params.collection).then(response => {
-    res.json(response)
-  })
+  firebase.consult('/' + req.params.collection).then(response => {
+    res.json(response);
+  });
+
+  /*res.json([
+    { nombre: 'Santiago' },
+    { nombre: 'Diego' }
+  ])*/
   //firebasedb.database().ref(collection).once('value')
 });
 
