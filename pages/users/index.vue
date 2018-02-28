@@ -15,10 +15,11 @@
 
 <script>
 import axios from 'axios'
+import { urlDatabase } from '../../plugins/firebase/firebase-const'
 
 export default {
   asyncData({ req, params }) {
-  	return axios.get('/api/firebase/personas')
+  	return axios.get(urlDatabase + 'personas.json')
       .then(response => {
         return {
           users: response.data

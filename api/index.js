@@ -1,4 +1,3 @@
-const firebase = require('./../plugins/firebase/firebase-server');
 const express = require('express')
 const router = express.Router()
 const app = express()
@@ -10,18 +9,6 @@ router.use((req, res, next) => {
   res.req = req
   next()
 })
-
-router.get('/firebase/:collection', (req, res) => {
-  firebase.consult('/' + req.params.collection).then(response => {
-    res.json(response);
-  });
-
-  /*res.json([
-    { nombre: 'Santiago' },
-    { nombre: 'Diego' }
-  ])*/
-  //firebasedb.database().ref(collection).once('value')
-});
 
 router.post('/setSession', (req, res) => {
   req.session.authUser = req.body  
