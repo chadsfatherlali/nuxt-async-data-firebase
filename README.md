@@ -9,4 +9,5 @@ Un pequeño tutorial de como hacer un sistema de autenticación con [NUXT](https
 
 ### Como crear un proyecto en FIREBASE
 
-1. Accedemos a [FIREBASE](https://firebase.google.com/) y procedemos a hacer login 
+1. Accedemos a [FIREBASE](https://firebase.google.com/) y procedemos a hacer login
+[Acceder](https://raw.githubusercontent.com/chadsfatherlali/nuxt-async-data-firebase/master/assets/acceder.png)
