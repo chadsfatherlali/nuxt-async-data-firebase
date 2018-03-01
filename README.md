@@ -1,3 +1,3 @@
-# Async data with Nuxt.js + FIREBASE + login (firebase)
+# Firebase login with Nuxt.js
 
-https://nuxtjs.org/examples/async-data
+Un pequeño tutorial de como hacer un sistema de autenticación con [NUXT](https://nuxtjs.org/) y [FIREBASE](https://firebase.google.com/)
