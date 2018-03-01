@@ -1,4 +1,4 @@
-# Firebase login with Nuxt.js
+# Firebase login con Nuxt.js
 
 Un pequeño tutorial de como hacer un sistema de autenticación con [NUXT](https://nuxtjs.org/) y [FIREBASE](https://firebase.google.com/):
 
@@ -13,7 +13,7 @@ Un pequeño tutorial de como hacer un sistema de autenticación con [NUXT](https
 
 ![alt text](https://raw.githubusercontent.com/chadsfatherlali/nuxt-async-data-firebase/master/assets/acceder.png "Botón Acceder")
 
-2. Creamos un nuevo proyecto, le asignames un nombre y escogemos el país ó región que más nos convenga
+2. Creamos un nuevo proyecto, le asignamos un nombre y escogemos el país ó región que más nos convenga
 
 ![alt text](https://raw.githubusercontent.com/chadsfatherlali/nuxt-async-data-firebase/master/assets/crearproyecto1.png "Botón Crear proyecto")
 
