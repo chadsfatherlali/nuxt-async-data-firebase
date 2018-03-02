@@ -271,7 +271,7 @@ export default {
   }
 }
 ```
-8. Creamos un página protegida a la cual solo va a poder acceder un usuario logado para esto creamos nuestro fichero bajo [/pages/users/index.vue](https://github.com/chadsfatherlali/nuxt-async-data-firebase/blob/master/pages/users/index.vue) la cual va a hacer uso de nuetro middleware [/middleware/auth.js](https://github.com/chadsfatherlali/nuxt-async-data-firebase/blob/master/middleware/auth.js) creado anteriormente para seteamos la propiedad **middleware** en el javascript de nuestro componente
+8. Creamos un página protegida a la cual solo va a poder acceder un usuario logado para esto creamos nuestro fichero bajo [/pages/users/index.vue](https://github.com/chadsfatherlali/nuxt-async-data-firebase/blob/master/pages/users/index.vue) la cual va a hacer uso de nuetro middleware [/middleware/auth.js](https://github.com/chadsfatherlali/nuxt-async-data-firebase/blob/master/middleware/auth.js) creado anteriormente para eso seteamos la propiedad **middleware** en el javascript de nuestro componente
 
 ```javascript
 import axios from 'axios'
