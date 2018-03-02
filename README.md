@@ -230,7 +230,7 @@ const consult = async (collection) => {
 export { firebasedb, consult, login, currentUser };
 ```
 
-7. Hora de pasar a crear nuestras páginas de login y nuestra página protegida por la session a la cual solo tendra acceso un usuario **logado** creamos nuestro fichero bajo [/pages/users/login.vue](https://github.com/chadsfatherlali/nuxt-async-data-firebase/blob/master/pages/users/login.vue) en este ficher dentro de los métodos **methods** a los que podemos llamar desde nuestro component en cada una de sus accioens podemos ver que hacemos un **dispatch** hacia las acciones definidas previamente en nuestro fichero de **[store](https://github.com/chadsfatherlali/nuxt-async-data-firebase/blob/master/store/index.js)** en el método de login podemos ver que como argumento pasamos **cuurentUser()** método definido en nuestro plugin creado anteriormente **[plugin FIREBASE](https://github.com/chadsfatherlali/nuxt-async-data-firebase/blob/master/plugins/firebase/firebase-client.js)** el cual nos devuelve el usuario actualmente logado por por el método login y también existe el método logout que llama a la acción de nuestro **store** que setea a null la session del usuario
+7. Hora de pasar a crear nuestras páginas de login y nuestra página protegida por la session a la cual solo tendra acceso un usuario **logado** creamos nuestro fichero bajo [/pages/users/login.vue](https://github.com/chadsfatherlali/nuxt-async-data-firebase/blob/master/pages/users/login.vue) en este ficher dentro de los métodos **methods** a los que podemos llamar desde nuestro component en cada una de sus accioens podemos ver que hacemos un **dispatch** hacia las acciones definidas previamente en nuestro fichero de **[store](https://github.com/chadsfatherlali/nuxt-async-data-firebase/blob/master/store/index.js)** en el método de login podemos ver que como argumento pasamos **cuurentUser()** método definido en nuestro plugin creado anteriormente **[plugin FIREBASE](https://github.com/chadsfatherlali/nuxt-async-data-firebase/blob/master/plugins/firebase/firebase-client.js)** el cual nos devuelve el usuario actualmente logado por por el método login y también existe el método logout que hace logout contra **FIREBASE** que llama a la acción de nuestro **store** que setea a null la session del usuario
 
 ```javascript
 import { login, logout, currentUser } from '../../plugins/firebase/firebase-client.js';
@@ -268,3 +268,37 @@ export default {
   }
 }
 ```
+8. Creamos un página protegida a la cual solo va a poder acceder un usuario logado para esto creamos nuestro fichero bajo [/pages/users/index.vue](https://github.com/chadsfatherlali/nuxt-async-data-firebase/blob/master/pages/users/index.vue) la cual va a hacer uso de nuetro middleware [/middleware/auth.js](https://github.com/chadsfatherlali/nuxt-async-data-firebase/blob/master/middleware/auth.js) creado anteriormente para seteamos la propiedad **middleware** en el javascript de nuestro componente
+
+```javascript
+import axios from 'axios'
+import { urlDatabase } from '../../plugins/firebase/firebase-const'
+export default {
+  asyncData({ req, params }) {
+  	return axios.get(urlDatabase + 'personas.json')
+      .then(response => {
+        return {
+          users: response.data
+        }
+      })
+      .catch(err => {
+        console.log(err)
+      })
+  },
+  head: {
+    title: 'List of posts'
+  },
+  middleware: 'auth'
+}
+```
+
+9. Ahora ya estamos listos para poner en marcha nuestra aplicación creada en **NUXT**, haciendo uso del comando **npm run dev** para mas referencias [aqui](https://nuxtjs.org/guide/commands/) y abriendo nuestro navegador en [localhost:3000/users](http://localhost:3000/users) veremos que somos inmediatamente redirigidos a la página de login [localhost:3000/users/login](http://localhost:3000/users/login)
+
+![alt text](https://raw.githubusercontent.com/chadsfatherlali/nuxt-async-data-firebase/master/assets/login1.png "login 1")
+
+10. En nuestra página de login podemos hacer uso de nuestro usuario dado de alta en firebase y veremos como cambia el estado de la página a logado y por tanto poder visitar la protegida por nuestro middleware [localhost:3000/users](http://localhost:3000/users)
+
+![alt text](https://raw.githubusercontent.com/chadsfatherlali/nuxt-async-data-firebase/master/assets/login2.png "login 2")
+![alt text](https://raw.githubusercontent.com/chadsfatherlali/nuxt-async-data-firebase/master/assets/login3.png "login 3")
+![alt text](https://raw.githubusercontent.com/chadsfatherlali/nuxt-async-data-firebase/master/assets/login4.png "login 4")
+![alt text](https://raw.githubusercontent.com/chadsfatherlali/nuxt-async-data-firebase/master/assets/login5.png "login 5")
