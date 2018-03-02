@@ -208,6 +208,17 @@ const login = async (email, password) => {
 }
 
 /**
+ * Hacemos un logout contra firebase
+ */
+const logout = async () => {
+	let logoutStatus = await firebasedb.auth().signOut().catch(err => {
+		return err
+	})
+
+	return logoutStatus
+}
+
+/**
  * Función para hacer consultas a una coleccion
  */
 const consult = async (collection) => {
@@ -222,7 +233,7 @@ export { firebasedb, consult, login, currentUser };
 7. Hora de pasar a crear nuestras páginas de login y nuestra página protegida por la session a la cual solo tendra acceso un usuario **logado** creamos nuestro fichero bajo [/pages/users/login.vue](https://github.com/chadsfatherlali/nuxt-async-data-firebase/blob/master/pages/users/login.vue) en este ficher dentro de los métodos **methods** a los que podemos llamar desde nuestro component en cada una de sus accioens podemos ver que hacemos un **dispatch** hacia las acciones definidas previamente en nuestro fichero de **[store](https://github.com/chadsfatherlali/nuxt-async-data-firebase/blob/master/store/index.js)** en el método de login podemos ver que como argumento pasamos **cuurentUser()** método definido en nuestro plugin creado anteriormente **[plugin FIREBASE](https://github.com/chadsfatherlali/nuxt-async-data-firebase/blob/master/plugins/firebase/firebase-client.js)** el cual nos devuelve el usuario actualmente logado por por el método login y también existe el método logout que llama a la acción de nuestro **store** que setea a null la session del usuario
 
 ```javascript
-import { login, currentUser } from '../../plugins/firebase/firebase-client.js';
+import { login, logout, currentUser } from '../../plugins/firebase/firebase-client.js';
 export default {
   data () {
     return {
@@ -244,6 +255,7 @@ export default {
     },
     async logout () {
       try {
+        await logout()
         await this.$store.dispatch('logout')
       }
       catch (e) {
