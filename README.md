@@ -179,7 +179,8 @@ export default function ({ store, error, redirect }) {
 ```
 6. Vamos a crear nuestro pequeño plugin que nos va a servir de puente para hacer un login contra **FIREBASE** creamos el fichero **/plugins/firebase/firebase-client.js** en este fichero vamos a crear la instancia hacia **FIREBASE** y unos metodos que nos van a servir para poder hacer el login y obtener el usuario logado, para necesitaremo el **apiKey** para poder crear una instancia a firebase, la **apiKey** la podemos obtener en nuestra consola de firebase dando click en el botón de **configuración web** el cual nos muestra un pequeña chuleta de como confiurar nuestra app con nuestras credenciales
 
-[!alt text](https://raw.githubusercontent.com/chadsfatherlali/nuxt-async-data-firebase/master/assets/apikey.png "api key")
+![alt text](https://raw.githubusercontent.com/chadsfatherlali/nuxt-async-data-firebase/master/assets/apikey.png "api key")
+
 
 ```javascript
 import * as firebasedb from 'firebase';
