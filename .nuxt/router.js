@@ -3,11 +3,11 @@ import Router from 'vue-router'
 
 Vue.use(Router)
 
-const _753443f1 = () => import('../pages/posts/index.vue' /* webpackChunkName: "pages/posts/index" */).then(m => m.default || m)
-const _b9325034 = () => import('../pages/users/index.vue' /* webpackChunkName: "pages/users/index" */).then(m => m.default || m)
-const _6d0e7afd = () => import('../pages/users/login.vue' /* webpackChunkName: "pages/users/login" */).then(m => m.default || m)
-const _ff96e2ce = () => import('../pages/posts/_id.vue' /* webpackChunkName: "pages/posts/_id" */).then(m => m.default || m)
-const _49d40526 = () => import('../pages/index.vue' /* webpackChunkName: "pages/index" */).then(m => m.default || m)
+const _72e55f06 = () => import('../pages/posts/index.vue' /* webpackChunkName: "pages/posts/index" */).then(m => m.default || m)
+const _1680371c = () => import('../pages/users/index.vue' /* webpackChunkName: "pages/users/index" */).then(m => m.default || m)
+const _8330f0ee = () => import('../pages/users/login.vue' /* webpackChunkName: "pages/users/login" */).then(m => m.default || m)
+const _2d8163b6 = () => import('../pages/posts/_id.vue' /* webpackChunkName: "pages/posts/_id" */).then(m => m.default || m)
+const _352662f9 = () => import('../pages/index.vue' /* webpackChunkName: "pages/index" */).then(m => m.default || m)
 
 
 
@@ -58,27 +58,27 @@ export function createRouter () {
     routes: [
 		{
 			path: "/posts",
-			component: _753443f1,
+			component: _72e55f06,
 			name: "posts"
 		},
 		{
 			path: "/users",
-			component: _b9325034,
+			component: _1680371c,
 			name: "users"
 		},
 		{
 			path: "/users/login",
-			component: _6d0e7afd,
+			component: _8330f0ee,
 			name: "users-login"
 		},
 		{
 			path: "/posts/:id",
-			component: _ff96e2ce,
+			component: _2d8163b6,
 			name: "posts-id"
 		},
 		{
 			path: "/",
-			component: _49d40526,
+			component: _352662f9,
 			name: "index"
 		}
     ],

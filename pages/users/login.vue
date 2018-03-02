@@ -21,7 +21,7 @@
 </template>
 
 <script>
-import { login, currentUser } from '../../plugins/firebase/firebase-client.js';
+import { login, logout, currentUser } from '../../plugins/firebase/firebase-client.js'
 
 export default {
   data () {
@@ -33,7 +33,7 @@ export default {
   methods: {
     async login () {
       try {
-        await login(this.formEmail, this.formPassword);
+        await login(this.formEmail, this.formPassword)
         await this.$store.dispatch('login', {
           user: currentUser()
         });
@@ -45,6 +45,7 @@ export default {
     },
     async logout () {
       try {
+        await logout()
         await this.$store.dispatch('logout')
       }
 
