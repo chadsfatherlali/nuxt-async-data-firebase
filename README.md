@@ -27,13 +27,13 @@ Un pequeño tutorial de como hacer un sistema de autenticación con [NUXT](https
 
 ![alt text](https://raw.githubusercontent.com/chadsfatherlali/nuxt-async-data-firebase/master/assets/autenticacion3.png "Panel de autenticación")
 
-3. Agregamos un suario dando de alta su correo y contraseña
+3. Agregamos un usuario dando de alta su correo y contraseña
 
 ![alt text](https://raw.githubusercontent.com/chadsfatherlali/nuxt-async-data-firebase/master/assets/altausuario1.png "Panel de alta a usuarios")
 
 ## En este punto tenemos todo listo para pasar al código, usar como referencia este [repositorio](https://github.com/chadsfatherlali/nuxt-async-data-firebase) como esqueleto de la aplicación, estructura de directorios etc.
 
-1. Vamos a configurar nuestro fichero **package.json** con los necesario para hacer funcionar nuestra aplicación, para lo cual nos quedara algo similar a esto, **(se puede obviar firebase-admin puesto que podemos acceder a los datos de firebase por rest api, para más referencias consultar [aquí](https://firebase.google.com/docs/reference/rest/database/))**
+1. Vamos a configurar nuestro fichero **package.json** con lo necesario para hacer funcionar nuestra aplicación, para lo cual nos quedara algo similar a esto, **(se puede obviar firebase-admin puesto que podemos acceder a los datos de firebase por rest api, para más referencias consultar [aquí](https://firebase.google.com/docs/reference/rest/database/))**
 
 ```javascript
 {
@@ -58,7 +58,7 @@ Un pequeño tutorial de como hacer un sistema de autenticación con [NUXT](https
   }
 }
 ```
-2. Añadimos los necesario en nuestro archivo de configuración de NUXT **nuxt.config.js** y haciendo uso de un Server middleware para comunicarnos en nuestro caso con un servidor express, el cual nos va a ayudar a guardar al session del usuario a traves de las páginas para saber que estamos logados, para más referencias [aquí](https://nuxtjs.org/api/configuration-servermiddleware#the-servermiddleware-property)
+2. Añadimos lo necesario en nuestro archivo de configuración de NUXT **nuxt.config.js** y haciendo uso de un Server middleware para comunicarnos en nuestro caso con un servidor express, el cual nos va a ayudar a guardar al session del usuario a traves de las páginas para saber que estamos logados, para más referencias [aquí](https://nuxtjs.org/api/configuration-servermiddleware#the-servermiddleware-property)
 
 ```javascript
 const bodyParser = require('body-parser');
@@ -168,7 +168,7 @@ export const actions = {
 }
 ```
 
-5. Hora de crear nuestro middleware para manejar el estado del usuario y poder denegar ó no el acceso a las páginas de nuestra aplicación, para esto creamos el fichero **/middleware/auth.js** en el caso de que el estado definido por nuestro **store** se null redirigimos al usuario hacia la página de login
+5. Hora de crear nuestro middleware para manejar el estado del usuario y poder denegar ó no el acceso a las páginas de nuestra aplicación, para esto creamos el fichero **/middleware/auth.js** en el caso de que el estado definido por nuestro **store** sea null redirigimos al usuario hacia la página de login
 
 ```javascript
 export default function ({ store, error, redirect }) {
@@ -177,7 +177,7 @@ export default function ({ store, error, redirect }) {
 	}
 }
 ```
-6. Vamos a crear nuestro pequeño plugin que nos va a servir de puente para hacer un login contra **FIREBASE** creamos el fichero **/plugins/firebase/firebase-client.js** en este fichero vamos a crear la instancia hacia **FIREBASE** y unos metodos que nos van a servir para poder hacer el login y obtener el usuario logado, para necesitaremo el **apiKey** para poder crear una instancia a firebase, la **apiKey** la podemos obtener en nuestra consola de firebase dando click en el botón de **configuración web** el cual nos muestra un pequeña chuleta de como confiurar nuestra app con nuestras credenciales
+6. Vamos a crear nuestro pequeño plugin que nos va a servir de puente para hacer un login contra **FIREBASE** creamos el fichero **/plugins/firebase/firebase-client.js** en este fichero vamos a crear la instancia hacia **FIREBASE** y unos metodos que nos van a servir para poder hacer el login y obtener el usuario logado, para eso necesitaremo el **apiKey** para poder crear una instancia a firebase, la **apiKey** la podemos obtener en nuestra consola de firebase dando click en el botón de **configuración web** el cual nos muestra una pequeña chuleta de como configurar nuestra app con nuestras credenciales
 
 ![alt text](https://raw.githubusercontent.com/chadsfatherlali/nuxt-async-data-firebase/master/assets/apikey.png "api key")
 
@@ -233,7 +233,7 @@ const consult = async (collection) => {
 export { firebasedb, consult, login, currentUser };
 ```
 
-7. Hora de pasar a crear nuestras páginas de login y nuestra página protegida por la session a la cual solo tendra acceso un usuario **logado** creamos nuestro fichero bajo [/pages/users/login.vue](https://github.com/chadsfatherlali/nuxt-async-data-firebase/blob/master/pages/users/login.vue) en este ficher dentro de los métodos **methods** a los que podemos llamar desde nuestro component en cada una de sus accioens podemos ver que hacemos un **dispatch** hacia las acciones definidas previamente en nuestro fichero de **[store](https://github.com/chadsfatherlali/nuxt-async-data-firebase/blob/master/store/index.js)** en el método de login podemos ver que como argumento pasamos **cuurentUser()** método definido en nuestro plugin creado anteriormente **[plugin FIREBASE](https://github.com/chadsfatherlali/nuxt-async-data-firebase/blob/master/plugins/firebase/firebase-client.js)** el cual nos devuelve el usuario actualmente logado por por el método login y también existe el método logout que hace logout contra **FIREBASE** que llama a la acción de nuestro **store** que setea a null la session del usuario
+7. Hora de pasar a crear nuestras páginas de login y nuestra página protegida por la session a la cual solo tendra acceso un usuario **logado** creamos nuestro fichero bajo [/pages/users/login.vue](https://github.com/chadsfatherlali/nuxt-async-data-firebase/blob/master/pages/users/login.vue) en este ficher dentro de los métodos **methods** a los que podemos llamar desde nuestro componente en cada una de sus accioens podemos ver que hacemos un **dispatch** hacia las acciones definidas previamente en nuestro fichero de **[store](https://github.com/chadsfatherlali/nuxt-async-data-firebase/blob/master/store/index.js)** en el método de login podemos ver que como argumento pasamos **cuurentUser()** método definido en nuestro plugin creado anteriormente **[plugin FIREBASE](https://github.com/chadsfatherlali/nuxt-async-data-firebase/blob/master/plugins/firebase/firebase-client.js)** el cual nos devuelve el usuario actualmente logado por por el método login y también existe el método logout que hace logout contra **FIREBASE** que llama a la acción de nuestro **store** que setea a null la session del usuario
 
 ```javascript
 import { login, logout, currentUser } from '../../plugins/firebase/firebase-client.js';
@@ -299,7 +299,7 @@ export default {
 
 ![alt text](https://raw.githubusercontent.com/chadsfatherlali/nuxt-async-data-firebase/master/assets/login1.png "login 1")
 
-10. En nuestra página de login podemos hacer uso de nuestro usuario dado de alta en firebase y veremos como cambia el estado de la página a logado y por tanto poder visitar la protegida por nuestro middleware [localhost:3000/users](http://localhost:3000/users)
+10. En nuestra página de login podemos hacer uso de nuestro usuario dado de alta en firebase y veremos como cambia el estado de la página a logado y por tanto poder visitar la página protegida por nuestro middleware [localhost:3000/users](http://localhost:3000/users)
 
 ![alt text](https://raw.githubusercontent.com/chadsfatherlali/nuxt-async-data-firebase/master/assets/login2.png "login 2")
 ![alt text](https://raw.githubusercontent.com/chadsfatherlali/nuxt-async-data-firebase/master/assets/login3.png "login 3")
