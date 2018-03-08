@@ -1,9 +1,10 @@
 import * as firebasedb from 'firebase'
+import { apiKey } from './firebase-const'
 
 if (!firebasedb.apps.length) {
     firebasedb.initializeApp({
-		apiKey: 'abcdefghijklmnopqrst',
-		databaseURL: 'https://test-3c452.firebaseio.com/',
+		apiKey: apiKey,
+		databaseURL: 'https://test-3c452.firebaseio.com/'
 	})
 }
 
@@ -22,7 +23,7 @@ const login = async (email, password) => {
 		return err
 	})
 
-	return loginStatus;
+	return loginStatus
 }
 
 const logout = async () => {
