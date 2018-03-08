@@ -1,10 +1,10 @@
 import * as firebasedb from 'firebase'
-import { apiKey } from './firebase-const'
+import { urlDatabase, apiKey } from './firebase-const'
 
 if (!firebasedb.apps.length) {
     firebasedb.initializeApp({
 		apiKey: apiKey,
-		databaseURL: 'https://test-3c452.firebaseio.com/'
+		databaseURL: urlDatabase
 	})
 }
 
