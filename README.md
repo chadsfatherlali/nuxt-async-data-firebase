@@ -295,11 +295,11 @@ export default {
 }
 ```
 
-9. Ahora ya estamos listos para poner en marcha nuestra aplicación creada en **NUXT**, haciendo uso del comando **npm run dev** para mas referencias [aqui](https://nuxtjs.org/guide/commands/) y abriendo nuestro navegador en [localhost:3000/users](http://localhost:3000/users) veremos que somos inmediatamente redirigidos a la página de login [localhost:3000/users/login](http://localhost:3000/users/login)
+9. Ahora ya estamos listos para poner en marcha nuestra aplicación creada en **NUXT**, haciendo uso del comando **npm run dev** para mas referencias [aqui](https://nuxtjs.org/guide/commands/) y abriendo nuestro navegador en [localhost:3333/users](http://localhost:3333/users) veremos que somos inmediatamente redirigidos a la página de login [localhost:3333/users/login](http://localhost:3333/users/login)
 
 ![alt text](https://raw.githubusercontent.com/chadsfatherlali/nuxt-async-data-firebase/master/assets/login1.png "login 1")
 
-10. En nuestra página de login podemos hacer uso de nuestro usuario dado de alta en firebase y veremos como cambia el estado de la página a logado y por tanto poder visitar la página protegida por nuestro middleware [localhost:3000/users](http://localhost:3000/users)
+10. En nuestra página de login podemos hacer uso de nuestro usuario dado de alta en firebase y veremos como cambia el estado de la página a logado y por tanto poder visitar la página protegida por nuestro middleware [localhost:3333/users](http://localhost:3333/users)
 
 ![alt text](https://raw.githubusercontent.com/chadsfatherlali/nuxt-async-data-firebase/master/assets/login2.png "login 2")
 ![alt text](https://raw.githubusercontent.com/chadsfatherlali/nuxt-async-data-firebase/master/assets/login3.png "login 3")
