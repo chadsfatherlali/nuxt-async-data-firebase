@@ -7,6 +7,11 @@
       <input type="password" name="password" placeholder="contraseña" v-model="formPassword" />
 
       <button type="submit">Login</button>
+
+      <div id="error_login" v-if="errorLogin">
+        <pre><strong>code: </strong> {{ errorLogin.code }}</pre>
+        <pre><strong>message: </strong> {{ errorLogin.message }}</pre>
+      </div>
     </form>
 
     <div v-else>
@@ -27,16 +32,26 @@ export default {
   data () {
     return {
       formEmail: '',
-      formPassword: ''
+      formPassword: '',
+      errorLogin: false
     }
   },
   methods: {
     async login () {
       try {
-        await login(this.formEmail, this.formPassword)
-        await this.$store.dispatch('login', {
-          user: currentUser()
-        });
+        let loginStatus = await login(this.formEmail, this.formPassword)
+
+        if (!loginStatus.error) {
+          this.errorLogin = false
+          
+          await this.$store.dispatch('login', {
+            user: currentUser()
+          })        
+        }
+
+        else {
+          this.errorLogin = loginStatus.data
+        }
       }
 
       catch (e) {
@@ -61,6 +76,9 @@ export default {
 </script>
 
 <style scoped>
+#error_login {
+  line-height: 1px;
+}
 .container {
   width: 70%;
   margin: auto;

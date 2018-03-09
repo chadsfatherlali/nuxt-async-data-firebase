@@ -20,7 +20,10 @@ const currentUser = () => {
  */
 const login = async (email, password) => {
 	let loginStatus = await firebasedb.auth().signInWithEmailAndPassword(email, password).catch(err => {
-		return err
+		return {
+			error: true,
+			data: err
+		}
 	})
 
 	return loginStatus
@@ -43,4 +46,4 @@ const consult = async (collection) => {
 	return snapshot.val()
 }
 
-export { firebasedb, consult, login, logout, currentUser }
+export { firebasedb, consult, login, logout, currentUser, userIdToken }
