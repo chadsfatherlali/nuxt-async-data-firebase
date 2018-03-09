@@ -1,11 +1,11 @@
-
 <template>
   <div class="container">
     <h1>Users</h1>
     <ul>
       <li v-for="(user, index) in users" :key="index">
         <pre>
-        	{{ user.nombre }} <strong>{{ index }}</strong>
+        	id: {{ index }}
+          name: {{ user.name }}
         </pre>
       </li>
     </ul>
@@ -18,9 +18,9 @@ import axios from 'axios'
 import { urlDatabase } from '../../plugins/firebase/firebase-const'
 
 export default {
-  asyncData({ req, params }) {
-  	return axios.get(urlDatabase + 'personas.json')
-      .then(response => {
+  asyncData({ store }) {
+  	return axios.get(urlDatabase + 'users.json?access_token=' + store.state.adminAccessToken)
+      .then((response, err) => {
         return {
           users: response.data
         }

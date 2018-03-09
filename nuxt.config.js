@@ -26,6 +26,7 @@ module.exports = {
       saveUninitialized: false,
       cookie: { maxAge: null }
     }),
+    '~/api/firebase-access-token',
     '~/api'
   ]
 }

@@ -4,12 +4,16 @@ import axios from 'axios'
 export const strict = false
 
 export const state = () => ({
-	authUser: null
+	authUser: null,
+	adminAccessToken: null
 });
 
 export const mutations = {
 	SET_USER: function (state, user) {
 		state.authUser = user
+	},
+	SET_ADMINACCESSTOKEN: function (state, token) {
+		state.adminAccessToken = token
 	}
 }
 
@@ -22,6 +26,8 @@ export const actions = {
 		) {
 			commit('SET_USER', req.session.authUser.user)			
 		}
+
+		if (req.adminAccessToken) commit('SET_ADMINACCESSTOKEN', req.adminAccessToken)
 	},
 	async login ({ commit }, { user }) {
 		const { sessionStatus } = await axios.post('/api/setSession', { user })

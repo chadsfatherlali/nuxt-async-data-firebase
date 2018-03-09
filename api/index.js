@@ -7,6 +7,7 @@ router.use((req, res, next) => {
   Object.setPrototypeOf(res, app.response)
   req.res = res
   res.req = req
+  
   next()
 })
 
@@ -14,7 +15,6 @@ router.post('/setSession', (req, res) => {
   req.session.authUser = req.body  
 
   res.json ({ ok: true })
-  //res.status(401).json({ message: 'Bad credentials' })
 })
 
 router.post('/destroySession', (req, res) => {

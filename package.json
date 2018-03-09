@@ -11,7 +11,8 @@
     "fs": "0.0.1-security",
     "net": "^1.0.2",
     "nuxt": "latest",
-    "tls": "0.0.1"
+    "tls": "0.0.1",
+    "googleapis": "latest"
   },
   "scripts": {
     "dev": "PORT=3333 nuxt",
